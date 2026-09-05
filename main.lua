@@ -36,7 +36,7 @@ local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
 local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
+local playerGui = game.CoreGui
 
 --------------------------------------------------------------------------------
 -- 1. THEME CONFIGURATIONS
