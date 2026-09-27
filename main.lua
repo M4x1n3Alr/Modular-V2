@@ -42,38 +42,17 @@ local playerGui = game.CoreGui
 -- 1. THEME CONFIGURATIONS
 --------------------------------------------------------------------------------
 local Themes = {
-    -- Your Original Themes
-    --[[
-    DarkSleek     │ Replaced flat, washed-out grays with a modern deep zinc/obsidian palette (20, 21, 26), clear card surface elevation (30, 32, 40), a vibrant
-     		 │ modern blue accent (59, 130, 246), and refined modern toggle indicators.
-	MinimalLight  │ Fixed the inverted hierarchy where cards were darker than the background. Now features elevated pure white component cards (255, 255, 255) on
-     		 │ a clean light gray canvas (248, 249, 251) with sharp ink-black typography (24, 24, 27).
-		Dracula       │ Balanced surface contrast so that MutedText (120, 135, 185) remains clearly legible inside components (52, 55, 70), while preserving
-		 │ authentic Dracula palette tokens.
-       SolarizedDark │ Aligned with official Solarized specs: moved component backgrounds to canonical base02 (7, 54, 66), used crisp Solarized Blue (38, 139, 210)
-                     │ as the accent instead of murky yellow, and enhanced text contrast with base1 (147, 161, 161).
-       OceanBreeze   │ Replaced muddy grayish-cyan tints with airy sea-mist (240, 248, 252), deep navy typography (15, 42, 74), and separated ToggleOn into a
-                     │ distinct tropical seafoam teal (20, 184, 166) so it no longer conflicts with the blue accent.
-       MatchaForest  │ Created an organic Japanese tea garden aesthetic: deep evergreen base (26, 33, 30), vibrant fresh matcha accent (158, 204, 82), soothing
-                     │ washi cream text (240, 245, 235), tender sprout green for active toggles, and autumn terracotta for off states.
-       HighContrast  │ Upgraded uncalibrated raw primaries (which caused harsh visual vibration) to calibrated high-contrast tones: pitch-black base (0, 0, 0),
-      			│ brilliant amber-gold accent (255, 215, 0), pure white text, and WCAG AAA compliant muted text (180, 180, 180).
-       PastelDream   │ Fixed low-contrast washed-out elements: raised the rose accent (238, 125, 160) so buttons and active states are clearly visible on white
-                     │ cards, and switched text to a velvety plum-charcoal (75, 55, 70) for harmonious aesthetic readability.
-       Cyberpunk     │ Left unchanged as requested.
-       Synthwave     │ Left unchanged as requested.
-	]]--
 	DarkSleek = {
-		Background = Color3.fromRGB(20, 21, 26),
-		Sidebar = Color3.fromRGB(14, 15, 19),
-		Accent = Color3.fromRGB(59, 130, 246),
-		Text = Color3.fromRGB(245, 247, 250),
-		MutedText = Color3.fromRGB(140, 148, 163),
-		ComponentBg = Color3.fromRGB(30, 32, 40),
-		ToggleOn = Color3.fromRGB(34, 197, 94),
-		ToggleOff = Color3.fromRGB(239, 68, 68)
+		Background = Color3.fromRGB(18, 18, 21),
+		Sidebar = Color3.fromRGB(9, 9, 11),
+		Accent = Color3.fromRGB(37, 99, 235),
+		Text = Color3.fromRGB(250, 250, 250),
+		MutedText = Color3.fromRGB(161, 161, 170),
+		ComponentBg = Color3.fromRGB(39, 39, 42),
+		ToggleOn = Color3.fromRGB(22, 163, 74),
+		ToggleOff = Color3.fromRGB(185, 28, 28)
 	},
-	Cyberpunk = {
+	Cyberpunk = { -- dont change
 		Background = Color3.fromRGB(10, 10, 16),
 		Sidebar = Color3.fromRGB(5, 5, 8),
 		Accent = Color3.fromRGB(255, 0, 128),
@@ -84,38 +63,38 @@ local Themes = {
 		ToggleOff = Color3.fromRGB(255, 0, 50)
 	},
 	MinimalLight = {
-		Background = Color3.fromRGB(248, 249, 251),
-		Sidebar = Color3.fromRGB(240, 242, 246),
-		Accent = Color3.fromRGB(24, 24, 27),
+		Background = Color3.fromRGB(244, 244, 245),
+		Sidebar = Color3.fromRGB(228, 228, 231),
+		Accent = Color3.fromRGB(39, 39, 42),
 		Text = Color3.fromRGB(24, 24, 27),
-		MutedText = Color3.fromRGB(113, 113, 122),
+		MutedText = Color3.fromRGB(82, 82, 91),
 		ComponentBg = Color3.fromRGB(255, 255, 255),
-		ToggleOn = Color3.fromRGB(34, 197, 94),
-		ToggleOff = Color3.fromRGB(239, 68, 68)
+		ToggleOn = Color3.fromRGB(22, 163, 74),
+		ToggleOff = Color3.fromRGB(220, 38, 38)
 	},
 
 	-- 7 New Themes
 	Dracula = {
 		Background = Color3.fromRGB(40, 42, 54),
-		Sidebar = Color3.fromRGB(30, 31, 41),
+		Sidebar = Color3.fromRGB(31, 32, 43),
 		Accent = Color3.fromRGB(189, 147, 249),
 		Text = Color3.fromRGB(248, 248, 242),
-		MutedText = Color3.fromRGB(120, 135, 185),
-		ComponentBg = Color3.fromRGB(52, 55, 70),
+		MutedText = Color3.fromRGB(174, 178, 203),
+		ComponentBg = Color3.fromRGB(68, 71, 90),
 		ToggleOn = Color3.fromRGB(80, 250, 123),
 		ToggleOff = Color3.fromRGB(255, 85, 85)
 	},
 	SolarizedDark = {
 		Background = Color3.fromRGB(0, 43, 54),
-		Sidebar = Color3.fromRGB(0, 33, 42),
+		Sidebar = Color3.fromRGB(0, 30, 38),
 		Accent = Color3.fromRGB(38, 139, 210),
-		Text = Color3.fromRGB(147, 161, 161),
-		MutedText = Color3.fromRGB(88, 110, 117),
+		Text = Color3.fromRGB(238, 232, 213),
+		MutedText = Color3.fromRGB(147, 161, 161),
 		ComponentBg = Color3.fromRGB(7, 54, 66),
-		ToggleOn = Color3.fromRGB(133, 153, 0),
+		ToggleOn = Color3.fromRGB(42, 161, 152),
 		ToggleOff = Color3.fromRGB(220, 50, 47)
 	},
-	Synthwave = {
+	Synthwave = { -- dont change
 		Background = Color3.fromRGB(36, 23, 52),
 		Sidebar = Color3.fromRGB(25, 16, 36),
 		Accent = Color3.fromRGB(255, 108, 17),
@@ -126,46 +105,47 @@ local Themes = {
 		ToggleOff = Color3.fromRGB(247, 3, 141)
 	},
 	OceanBreeze = {
-		Background = Color3.fromRGB(240, 248, 252),
-		Sidebar = Color3.fromRGB(226, 240, 248),
-		Accent = Color3.fromRGB(2, 132, 199),
-		Text = Color3.fromRGB(15, 42, 74),
-		MutedText = Color3.fromRGB(82, 120, 150),
+		Background = Color3.fromRGB(241, 245, 249),
+		Sidebar = Color3.fromRGB(219, 234, 254),
+		Accent = Color3.fromRGB(3, 105, 161),
+		Text = Color3.fromRGB(12, 43, 68),
+		MutedText = Color3.fromRGB(71, 85, 105),
 		ComponentBg = Color3.fromRGB(255, 255, 255),
-		ToggleOn = Color3.fromRGB(20, 184, 166),
-		ToggleOff = Color3.fromRGB(244, 98, 124)
+		ToggleOn = Color3.fromRGB(8, 145, 178),
+		ToggleOff = Color3.fromRGB(190, 24, 93)
 	},
 	MatchaForest = {
-		Background = Color3.fromRGB(26, 33, 30),
-		Sidebar = Color3.fromRGB(19, 24, 22),
-		Accent = Color3.fromRGB(158, 204, 82),
-		Text = Color3.fromRGB(240, 245, 235),
-		MutedText = Color3.fromRGB(130, 158, 145),
-		ComponentBg = Color3.fromRGB(37, 47, 43),
-		ToggleOn = Color3.fromRGB(135, 195, 75),
-		ToggleOff = Color3.fromRGB(214, 90, 80)
+		Background = Color3.fromRGB(24, 31, 27),
+		Sidebar = Color3.fromRGB(14, 20, 17),
+		Accent = Color3.fromRGB(163, 190, 92),
+		Text = Color3.fromRGB(242, 244, 232),
+		MutedText = Color3.fromRGB(166, 179, 160),
+		ComponentBg = Color3.fromRGB(48, 61, 53),
+		ToggleOn = Color3.fromRGB(109, 153, 76),
+		ToggleOff = Color3.fromRGB(166, 79, 64)
 	},
 	HighContrast = {
 		Background = Color3.fromRGB(0, 0, 0),
-		Sidebar = Color3.fromRGB(12, 12, 12),
+		Sidebar = Color3.fromRGB(18, 18, 18),
 		Accent = Color3.fromRGB(255, 215, 0),
 		Text = Color3.fromRGB(255, 255, 255),
-		MutedText = Color3.fromRGB(180, 180, 180),
-		ComponentBg = Color3.fromRGB(24, 24, 24),
-		ToggleOn = Color3.fromRGB(46, 230, 120),
-		ToggleOff = Color3.fromRGB(255, 75, 75)
+		MutedText = Color3.fromRGB(200, 200, 200),
+		ComponentBg = Color3.fromRGB(38, 38, 38),
+		ToggleOn = Color3.fromRGB(0, 230, 118),
+		ToggleOff = Color3.fromRGB(255, 64, 64)
 	},
 	PastelDream = {
-		Background = Color3.fromRGB(253, 246, 248),
-		Sidebar = Color3.fromRGB(248, 236, 241),
-		Accent = Color3.fromRGB(238, 125, 160),
-		Text = Color3.fromRGB(75, 55, 70),
-		MutedText = Color3.fromRGB(155, 135, 150),
+		Background = Color3.fromRGB(247, 242, 250),
+		Sidebar = Color3.fromRGB(235, 222, 241),
+		Accent = Color3.fromRGB(190, 78, 125),
+		Text = Color3.fromRGB(65, 43, 61),
+		MutedText = Color3.fromRGB(112, 91, 108),
 		ComponentBg = Color3.fromRGB(255, 255, 255),
-		ToggleOn = Color3.fromRGB(160, 225, 145),
-		ToggleOff = Color3.fromRGB(245, 145, 165)
+		ToggleOn = Color3.fromRGB(91, 143, 100),
+		ToggleOff = Color3.fromRGB(190, 78, 125)
 	}
 }
+
 
 
 --------------------------------------------------------------------------------
