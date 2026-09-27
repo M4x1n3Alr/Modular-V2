@@ -106,13 +106,13 @@ local Themes = {
 	},
 	OceanBreeze = {
 		Background = Color3.fromRGB(241, 245, 249),
-		Sidebar = Color3.fromRGB(219, 234, 254),
-		Accent = Color3.fromRGB(3, 105, 161),
-		Text = Color3.fromRGB(12, 43, 68),
-		MutedText = Color3.fromRGB(71, 85, 105),
-		ComponentBg = Color3.fromRGB(255, 255, 255),
-		ToggleOn = Color3.fromRGB(8, 145, 178),
-		ToggleOff = Color3.fromRGB(190, 24, 93)
+		Sidebar = Color3.fromRGB(235, 235, 235),
+		Accent = Color3.fromRGB(0, 174, 252),
+		Text = Color3.fromRGB(254, 199, 0),
+		MutedText = Color3.fromRGB(0, 0, 0),
+		ComponentBg = Color3.fromRGB(0, 174, 252),
+		ToggleOn = Color3.fromRGB(114, 212, 25),
+		ToggleOff = Color3.fromRGB(255, 38, 0)
 	},
 	MatchaForest = {
 		Background = Color3.fromRGB(24, 31, 27),
