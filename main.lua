@@ -1160,7 +1160,10 @@ end
 -- unselected and removed entries disappear from the UI and from outputList.
 -- In instanceMode the items are Instances: rows show instance.Name, are keyed by
 -- the instance itself, and destroyed instances (Parent == nil) are removed.
-local function createSelectionList(w, parentPage, settingName, items, outputList, defaultSelected, callback, instanceMode)
+-- multiSelect == false makes it single-choice: selecting a row clears the others,
+-- "Select all" is hidden, and at most one item is ever in outputList.
+local function createSelectionList(w, parentPage, settingName, items, outputList, defaultSelected, callback, instanceMode, multiSelect)
+	local singleSelect = multiSelect == false
 	items = items or {}
 	outputList = outputList or {}
 
@@ -1303,6 +1306,14 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 			local changed = syncItems()
 			-- The row may have just been removed (e.g. its instance was destroyed)
 			if rowByKey[row.key] == row then
+				if singleSelect and not row.selected then
+					for _, other in ipairs(rows) do
+						if other.selected then
+							other.selected = false
+							refreshRow(other)
+						end
+					end
+				end
 				row.selected = not row.selected
 				refreshRow(row)
 				changed = true
@@ -1396,16 +1407,22 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 
 		rows = nextRows
 		initialized = true
+		local foundSelected = false
 		for order, row in ipairs(rows) do
+			-- Single-choice keeps only the first selected row (e.g. defaultSelected = true)
+			if singleSelect and row.selected then
+				row.selected = not foundSelected
+				foundSelected = true
+			end
 			row.button.LayoutOrder = order + 1
 			refreshRow(row)
 		end
 
 		local hasRows = #rows > 0
-		selectAllButton.Visible = hasRows
+		selectAllButton.Visible = hasRows and not singleSelect
 		EmptyLabel.Visible = not hasRows
 
-		local listRowCount = hasRows and #rows + 1 or 1
+		local listRowCount = math.max(#rows + (selectAllButton.Visible and 1 or 0), 1)
 		local listHeight = listRowCount * rowHeight + (listRowCount - 1) * rowPadding
 		ItemList.Size = UDim2.new(1, -20, 0, listHeight)
 		expandedHeight = collapsedHeight + listHeight + 10
@@ -2055,9 +2072,15 @@ Tab.AddSelectionListe = Tab.AddSelectionList
 -- outputList receives the selected Instances themselves. The items table is
 -- re-scanned on every interaction; instances added later start unselected and
 -- removed/destroyed ones are dropped from the UI and from outputList.
+-- multiSelect: true -> any number of instances; false -> selecting one replaces
+-- the previous choice (outputList holds at most one instance).
 -- Returns a handle: handle:Refresh() re-scans immediately from code.
-function Tab:AddInstancesSelectionList(settingName, instances, outputList, defaultSelected, callback)
-	return createSelectionList(self._window, self._page, settingName, instances, outputList, defaultSelected, callback, true)
+function Tab:AddInstancesSelectionList(settingName, instances, outputList, defaultSelected, multiSelect, callback)
+	-- Older calls passed the callback in 5th position (no multiSelect argument)
+	if type(multiSelect) == "function" then
+		multiSelect, callback = true, multiSelect
+	end
+	return createSelectionList(self._window, self._page, settingName, instances, outputList, defaultSelected, callback, true, multiSelect ~= false)
 end
 
 function Tab:AddThemeButton(themeName, displayName)
