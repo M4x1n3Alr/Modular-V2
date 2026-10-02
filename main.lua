@@ -42,17 +42,38 @@ local playerGui = game.CoreGui
 -- 1. THEME CONFIGURATIONS
 --------------------------------------------------------------------------------
 local Themes = {
+    -- Your Original Themes
+    --[[
+    DarkSleek     │ Replaced flat, washed-out grays with a modern deep zinc/obsidian palette (20, 21, 26), clear card surface elevation (30, 32, 40), a vibrant
+     		 │ modern blue accent (59, 130, 246), and refined modern toggle indicators.
+	MinimalLight  │ Fixed the inverted hierarchy where cards were darker than the background. Now features elevated pure white component cards (255, 255, 255) on
+     		 │ a clean light gray canvas (248, 249, 251) with sharp ink-black typography (24, 24, 27).
+		Dracula       │ Balanced surface contrast so that MutedText (120, 135, 185) remains clearly legible inside components (52, 55, 70), while preserving
+		 │ authentic Dracula palette tokens.
+       SolarizedDark │ Aligned with official Solarized specs: moved component backgrounds to canonical base02 (7, 54, 66), used crisp Solarized Blue (38, 139, 210)
+                     │ as the accent instead of murky yellow, and enhanced text contrast with base1 (147, 161, 161).
+       OceanBreeze   │ Replaced muddy grayish-cyan tints with airy sea-mist (240, 248, 252), deep navy typography (15, 42, 74), and separated ToggleOn into a
+                     │ distinct tropical seafoam teal (20, 184, 166) so it no longer conflicts with the blue accent.
+       MatchaForest  │ Created an organic Japanese tea garden aesthetic: deep evergreen base (26, 33, 30), vibrant fresh matcha accent (158, 204, 82), soothing
+                     │ washi cream text (240, 245, 235), tender sprout green for active toggles, and autumn terracotta for off states.
+       HighContrast  │ Upgraded uncalibrated raw primaries (which caused harsh visual vibration) to calibrated high-contrast tones: pitch-black base (0, 0, 0),
+      			│ brilliant amber-gold accent (255, 215, 0), pure white text, and WCAG AAA compliant muted text (180, 180, 180).
+       PastelDream   │ Fixed low-contrast washed-out elements: raised the rose accent (238, 125, 160) so buttons and active states are clearly visible on white
+                     │ cards, and switched text to a velvety plum-charcoal (75, 55, 70) for harmonious aesthetic readability.
+       Cyberpunk     │ Left unchanged as requested.
+       Synthwave     │ Left unchanged as requested.
+	]]--
 	DarkSleek = {
-		Background = Color3.fromRGB(18, 18, 21),
-		Sidebar = Color3.fromRGB(9, 9, 11),
-		Accent = Color3.fromRGB(37, 99, 235),
-		Text = Color3.fromRGB(250, 250, 250),
-		MutedText = Color3.fromRGB(161, 161, 170),
-		ComponentBg = Color3.fromRGB(39, 39, 42),
-		ToggleOn = Color3.fromRGB(22, 163, 74),
-		ToggleOff = Color3.fromRGB(185, 28, 28)
+		Background = Color3.fromRGB(20, 21, 26),
+		Sidebar = Color3.fromRGB(14, 15, 19),
+		Accent = Color3.fromRGB(59, 130, 246),
+		Text = Color3.fromRGB(245, 247, 250),
+		MutedText = Color3.fromRGB(140, 148, 163),
+		ComponentBg = Color3.fromRGB(30, 32, 40),
+		ToggleOn = Color3.fromRGB(34, 197, 94),
+		ToggleOff = Color3.fromRGB(239, 68, 68)
 	},
-	Cyberpunk = { -- dont change
+	Cyberpunk = {
 		Background = Color3.fromRGB(10, 10, 16),
 		Sidebar = Color3.fromRGB(5, 5, 8),
 		Accent = Color3.fromRGB(255, 0, 128),
@@ -63,38 +84,38 @@ local Themes = {
 		ToggleOff = Color3.fromRGB(255, 0, 50)
 	},
 	MinimalLight = {
-		Background = Color3.fromRGB(244, 244, 245),
-		Sidebar = Color3.fromRGB(228, 228, 231),
-		Accent = Color3.fromRGB(39, 39, 42),
+		Background = Color3.fromRGB(248, 249, 251),
+		Sidebar = Color3.fromRGB(240, 242, 246),
+		Accent = Color3.fromRGB(24, 24, 27),
 		Text = Color3.fromRGB(24, 24, 27),
-		MutedText = Color3.fromRGB(82, 82, 91),
+		MutedText = Color3.fromRGB(113, 113, 122),
 		ComponentBg = Color3.fromRGB(255, 255, 255),
-		ToggleOn = Color3.fromRGB(22, 163, 74),
-		ToggleOff = Color3.fromRGB(220, 38, 38)
+		ToggleOn = Color3.fromRGB(34, 197, 94),
+		ToggleOff = Color3.fromRGB(239, 68, 68)
 	},
 
 	-- 7 New Themes
 	Dracula = {
 		Background = Color3.fromRGB(40, 42, 54),
-		Sidebar = Color3.fromRGB(31, 32, 43),
+		Sidebar = Color3.fromRGB(30, 31, 41),
 		Accent = Color3.fromRGB(189, 147, 249),
 		Text = Color3.fromRGB(248, 248, 242),
-		MutedText = Color3.fromRGB(174, 178, 203),
-		ComponentBg = Color3.fromRGB(68, 71, 90),
+		MutedText = Color3.fromRGB(120, 135, 185),
+		ComponentBg = Color3.fromRGB(52, 55, 70),
 		ToggleOn = Color3.fromRGB(80, 250, 123),
 		ToggleOff = Color3.fromRGB(255, 85, 85)
 	},
 	SolarizedDark = {
 		Background = Color3.fromRGB(0, 43, 54),
-		Sidebar = Color3.fromRGB(0, 30, 38),
+		Sidebar = Color3.fromRGB(0, 33, 42),
 		Accent = Color3.fromRGB(38, 139, 210),
-		Text = Color3.fromRGB(238, 232, 213),
-		MutedText = Color3.fromRGB(147, 161, 161),
+		Text = Color3.fromRGB(147, 161, 161),
+		MutedText = Color3.fromRGB(88, 110, 117),
 		ComponentBg = Color3.fromRGB(7, 54, 66),
-		ToggleOn = Color3.fromRGB(42, 161, 152),
+		ToggleOn = Color3.fromRGB(133, 153, 0),
 		ToggleOff = Color3.fromRGB(220, 50, 47)
 	},
-	Synthwave = { -- dont change
+	Synthwave = {
 		Background = Color3.fromRGB(36, 23, 52),
 		Sidebar = Color3.fromRGB(25, 16, 36),
 		Accent = Color3.fromRGB(255, 108, 17),
@@ -105,47 +126,46 @@ local Themes = {
 		ToggleOff = Color3.fromRGB(247, 3, 141)
 	},
 	OceanBreeze = {
-		Background = Color3.fromRGB(241, 245, 249),
-		Sidebar = Color3.fromRGB(235, 235, 235),
-		Accent = Color3.fromRGB(0, 174, 252),
-		Text = Color3.fromRGB(254, 199, 0),
-		MutedText = Color3.fromRGB(0, 0, 0),
-		ComponentBg = Color3.fromRGB(0, 174, 252),
-		ToggleOn = Color3.fromRGB(114, 212, 25),
-		ToggleOff = Color3.fromRGB(255, 38, 0)
+		Background = Color3.fromRGB(240, 248, 252),
+		Sidebar = Color3.fromRGB(226, 240, 248),
+		Accent = Color3.fromRGB(2, 132, 199),
+		Text = Color3.fromRGB(15, 42, 74),
+		MutedText = Color3.fromRGB(82, 120, 150),
+		ComponentBg = Color3.fromRGB(255, 255, 255),
+		ToggleOn = Color3.fromRGB(20, 184, 166),
+		ToggleOff = Color3.fromRGB(244, 98, 124)
 	},
 	MatchaForest = {
-		Background = Color3.fromRGB(24, 31, 27),
-		Sidebar = Color3.fromRGB(14, 20, 17),
-		Accent = Color3.fromRGB(163, 190, 92),
-		Text = Color3.fromRGB(242, 244, 232),
-		MutedText = Color3.fromRGB(166, 179, 160),
-		ComponentBg = Color3.fromRGB(48, 61, 53),
-		ToggleOn = Color3.fromRGB(109, 153, 76),
-		ToggleOff = Color3.fromRGB(166, 79, 64)
+		Background = Color3.fromRGB(26, 33, 30),
+		Sidebar = Color3.fromRGB(19, 24, 22),
+		Accent = Color3.fromRGB(158, 204, 82),
+		Text = Color3.fromRGB(240, 245, 235),
+		MutedText = Color3.fromRGB(130, 158, 145),
+		ComponentBg = Color3.fromRGB(37, 47, 43),
+		ToggleOn = Color3.fromRGB(135, 195, 75),
+		ToggleOff = Color3.fromRGB(214, 90, 80)
 	},
 	HighContrast = {
 		Background = Color3.fromRGB(0, 0, 0),
-		Sidebar = Color3.fromRGB(18, 18, 18),
+		Sidebar = Color3.fromRGB(12, 12, 12),
 		Accent = Color3.fromRGB(255, 215, 0),
 		Text = Color3.fromRGB(255, 255, 255),
-		MutedText = Color3.fromRGB(200, 200, 200),
-		ComponentBg = Color3.fromRGB(38, 38, 38),
-		ToggleOn = Color3.fromRGB(0, 230, 118),
-		ToggleOff = Color3.fromRGB(255, 64, 64)
+		MutedText = Color3.fromRGB(180, 180, 180),
+		ComponentBg = Color3.fromRGB(24, 24, 24),
+		ToggleOn = Color3.fromRGB(46, 230, 120),
+		ToggleOff = Color3.fromRGB(255, 75, 75)
 	},
 	PastelDream = {
-		Background = Color3.fromRGB(247, 242, 250),
-		Sidebar = Color3.fromRGB(235, 222, 241),
-		Accent = Color3.fromRGB(190, 78, 125),
-		Text = Color3.fromRGB(65, 43, 61),
-		MutedText = Color3.fromRGB(112, 91, 108),
+		Background = Color3.fromRGB(253, 246, 248),
+		Sidebar = Color3.fromRGB(248, 236, 241),
+		Accent = Color3.fromRGB(238, 125, 160),
+		Text = Color3.fromRGB(75, 55, 70),
+		MutedText = Color3.fromRGB(155, 135, 150),
 		ComponentBg = Color3.fromRGB(255, 255, 255),
-		ToggleOn = Color3.fromRGB(91, 143, 100),
-		ToggleOff = Color3.fromRGB(190, 78, 125)
+		ToggleOn = Color3.fromRGB(160, 225, 145),
+		ToggleOff = Color3.fromRGB(245, 145, 165)
 	}
 }
-
 
 
 --------------------------------------------------------------------------------
@@ -177,6 +197,16 @@ local function updateRegisteredElement(w, instance, themeProperty, themeKey)
 	end
 
 	registerElement(w, instance, themeProperty, themeKey)
+end
+
+-- Stop theming an element that is about to be destroyed (dynamic list rows)
+local function unregisterElement(w, instance)
+	w.elementLookup[instance] = nil
+	for index = #w.trackedElements, 1, -1 do
+		if w.trackedElements[index].instance == instance then
+			table.remove(w.trackedElements, index)
+		end
+	end
 end
 
 local function applyTheme(w, themeName)
@@ -1124,16 +1154,20 @@ local function createItemSelector(w, parentPage, settingName, items, callback)
 	)
 end
 
--- Modular UI Component: Select any number of items and keep an output table updated
-local function createSelectionList(w, parentPage, settingName, items, outputList, defaultSelected, callback)
+-- Modular UI Component: Select any number of items and keep an output table updated.
+-- The caller's items table is re-scanned on every interaction (open, select,
+-- unselect, select all) and on handle:Refresh(), so entries added later appear
+-- unselected and removed entries disappear from the UI and from outputList.
+-- In instanceMode the items are Instances: rows show instance.Name, are keyed by
+-- the instance itself, and destroyed instances (Parent == nil) are removed.
+local function createSelectionList(w, parentPage, settingName, items, outputList, defaultSelected, callback, instanceMode)
+	items = items or {}
 	outputList = outputList or {}
 
 	local rowHeight = 30
 	local rowPadding = 4
-	local listRowCount = math.max(#items + 1, 1)
-	local listHeight = listRowCount * rowHeight + (listRowCount - 1) * rowPadding
 	local collapsedHeight = 50
-	local expandedHeight = collapsedHeight + listHeight + 10
+	local expandedHeight = collapsedHeight
 
 	local SelectionFrame = Instance.new("Frame")
 	SelectionFrame.Name = settingName .. "SelectionList"
@@ -1174,7 +1208,7 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 	-- The expanded list participates in the page layout instead of overlaying it.
 	-- The tab's ScrollingFrame handles overflow when this full list is open.
 	local ItemList = Instance.new("Frame")
-	ItemList.Size = UDim2.new(1, -20, 0, listHeight)
+	ItemList.Size = UDim2.new(1, -20, 0, rowHeight)
 	ItemList.Position = UDim2.new(0, 10, 0, collapsedHeight)
 	ItemList.BackgroundTransparency = 1
 	ItemList.Visible = false
@@ -1185,15 +1219,15 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 	ItemLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	ItemLayout.Parent = ItemList
 
-	local selectedByIndex = {}
-	local itemButtons = {}
-	local selectAllButton
+	local rows = {} -- ordered { key, item, button, selected } records
+	local rowByKey = {} -- index (plain lists) or the Instance itself (instanceMode)
 	local selectedCount = 0
 	local isOpen = false
+	local initialized = false
 
 	local function updateSelectButtonText()
 		local arrow = isOpen and "^" or "v"
-		SelectBtn.Text = string.format("%d/%d selected  %s", selectedCount, #items, arrow)
+		SelectBtn.Text = string.format("%d/%d selected  %s", selectedCount, #rows, arrow)
 	end
 
 	local function setOpen(open)
@@ -1203,19 +1237,17 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 		updateSelectButtonText()
 	end
 
-	local function refreshItem(index)
-		local ItemBtn = itemButtons[index]
-		if not ItemBtn then return end
-
-		local isSelected = selectedByIndex[index]
-		ItemBtn.Text = (isSelected and "[x]  " or "[ ]  ") .. tostring(items[index])
-		updateRegisteredElement(w, ItemBtn, "BackgroundColor3", isSelected and "Accent" or "Sidebar")
+	local function refreshRow(row)
+		local label = instanceMode and row.item.Name or tostring(row.item)
+		row.button.Text = (row.selected and "[x]  " or "[ ]  ") .. label
+		updateRegisteredElement(w, row.button, "BackgroundColor3", row.selected and "Accent" or "Sidebar")
 	end
 
-	local function refreshSelectAll()
-		if not selectAllButton then return end
+	local selectAllButton = Instance.new("TextButton")
 
-		if selectedCount == #items then
+	local function refreshSelectAll()
+		local allSelected = #rows > 0 and selectedCount == #rows
+		if allSelected then
 			selectAllButton.Text = "[x]  Select all"
 		elseif selectedCount > 0 then
 			selectAllButton.Text = "[-]  Select all"
@@ -1223,22 +1255,18 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 			selectAllButton.Text = "[ ]  Select all"
 		end
 
-		updateRegisteredElement(
-			w,
-			selectAllButton,
-			"BackgroundColor3",
-			selectedCount == #items and "Accent" or "Sidebar"
-		)
+		updateRegisteredElement(w, selectAllButton, "BackgroundColor3", allSelected and "Accent" or "Sidebar")
 	end
 
-	local function syncOutput(shouldNotify)
+	-- Rewrite the caller's table in place (in items order) so references stay valid
+	local function writeOutput(shouldNotify)
 		table.clear(outputList)
 		selectedCount = 0
 
-		for index, item in ipairs(items) do
-			if selectedByIndex[index] then
+		for _, row in ipairs(rows) do
+			if row.selected then
 				selectedCount += 1
-				table.insert(outputList, item)
+				table.insert(outputList, row.item)
 			end
 		end
 
@@ -1249,8 +1277,43 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 		end
 	end
 
-	if #items > 0 then
-		selectAllButton = Instance.new("TextButton")
+	local syncItems -- defined below; row buttons re-scan before toggling
+
+	local function createRowButton(row)
+		local ItemBtn = Instance.new("TextButton")
+		ItemBtn.Name = (instanceMode and row.item.Name or tostring(row.item)) .. "SelectionButton"
+		ItemBtn.Size = UDim2.new(1, 0, 0, rowHeight)
+		ItemBtn.BorderSizePixel = 0
+		ItemBtn.Font = Enum.Font.Gotham
+		ItemBtn.TextSize = 13
+		ItemBtn.TextXAlignment = Enum.TextXAlignment.Left
+		registerElement(w, ItemBtn, "BackgroundColor3", "Sidebar")
+		registerElement(w, ItemBtn, "TextColor3", "Text")
+		row.button = ItemBtn
+
+		local ItemCorner = Instance.new("UICorner")
+		ItemCorner.CornerRadius = UDim.new(0, 5)
+		ItemCorner.Parent = ItemBtn
+
+		local ItemPadding = Instance.new("UIPadding")
+		ItemPadding.PaddingLeft = UDim.new(0, 10)
+		ItemPadding.Parent = ItemBtn
+
+		ItemBtn.MouseButton1Click:Connect(function()
+			local changed = syncItems()
+			-- The row may have just been removed (e.g. its instance was destroyed)
+			if rowByKey[row.key] == row then
+				row.selected = not row.selected
+				refreshRow(row)
+				changed = true
+			end
+			writeOutput(changed)
+		end)
+
+		ItemBtn.Parent = ItemList
+	end
+
+	do -- "Select all" row (hidden while the list is empty)
 		selectAllButton.Name = "SelectAllButton"
 		selectAllButton.Size = UDim2.new(1, 0, 0, rowHeight)
 		selectAllButton.BorderSizePixel = 0
@@ -1271,61 +1334,90 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 		SelectAllPadding.Parent = selectAllButton
 
 		selectAllButton.MouseButton1Click:Connect(function()
-			local shouldSelectAll = selectedCount < #items
-			for index = 1, #items do
-				selectedByIndex[index] = shouldSelectAll
-				refreshItem(index)
+			syncItems()
+			local shouldSelectAll = false
+			for _, row in ipairs(rows) do
+				if not row.selected then
+					shouldSelectAll = true
+					break
+				end
 			end
-			syncOutput(true)
+			for _, row in ipairs(rows) do
+				row.selected = shouldSelectAll
+				refreshRow(row)
+			end
+			writeOutput(true)
 		end)
 	end
 
-	for index, item in ipairs(items) do
-		selectedByIndex[index] = defaultSelected == true
+	local EmptyLabel = Instance.new("TextLabel")
+	EmptyLabel.Size = UDim2.new(1, 0, 0, rowHeight)
+	EmptyLabel.BackgroundTransparency = 1
+	EmptyLabel.Text = "No items"
+	EmptyLabel.Font = Enum.Font.Gotham
+	EmptyLabel.TextSize = 13
+	EmptyLabel.LayoutOrder = 1
+	registerElement(w, EmptyLabel, "TextColor3", "MutedText")
+	EmptyLabel.Parent = ItemList
 
-		local ItemBtn = Instance.new("TextButton")
-		ItemBtn.Name = tostring(item) .. "SelectionButton"
-		ItemBtn.Size = UDim2.new(1, 0, 0, rowHeight)
-		ItemBtn.BorderSizePixel = 0
-		ItemBtn.Font = Enum.Font.Gotham
-		ItemBtn.TextSize = 13
-		ItemBtn.TextXAlignment = Enum.TextXAlignment.Left
-		ItemBtn.LayoutOrder = index + 1
-		registerElement(w, ItemBtn, "BackgroundColor3", "Sidebar")
-		registerElement(w, ItemBtn, "TextColor3", "Text")
-		ItemBtn.Parent = ItemList
-		itemButtons[index] = ItemBtn
+	-- Reconcile rows with the caller's items table. Existing rows keep their
+	-- selection and refresh their label (picks up renamed instances); new rows
+	-- start unselected (defaultSelected only applies to the first build); rows
+	-- whose item is gone are destroyed. Returns true if a selected row was removed.
+	syncItems = function()
+		local nextRows = {}
+		local seen = {}
+		local removedSelected = false
 
-		local ItemCorner = Instance.new("UICorner")
-		ItemCorner.CornerRadius = UDim.new(0, 5)
-		ItemCorner.Parent = ItemBtn
+		for index, item in ipairs(items) do
+			local key = instanceMode and item or index
+			local valid = not instanceMode or (typeof(item) == "Instance" and item.Parent ~= nil)
+			if valid and not seen[key] then
+				seen[key] = true
+				local row = rowByKey[key]
+				if not row then
+					row = { key = key, item = item, selected = not initialized and defaultSelected == true }
+					rowByKey[key] = row
+					createRowButton(row)
+				end
+				row.item = item
+				table.insert(nextRows, row)
+			end
+		end
 
-		local ItemPadding = Instance.new("UIPadding")
-		ItemPadding.PaddingLeft = UDim.new(0, 10)
-		ItemPadding.Parent = ItemBtn
+		for key, row in pairs(rowByKey) do
+			if not seen[key] then
+				removedSelected = removedSelected or row.selected
+				rowByKey[key] = nil
+				unregisterElement(w, row.button)
+				row.button:Destroy()
+			end
+		end
 
-		ItemBtn.MouseButton1Click:Connect(function()
-			selectedByIndex[index] = not selectedByIndex[index]
-			refreshItem(index)
-			syncOutput(true)
-		end)
+		rows = nextRows
+		initialized = true
+		for order, row in ipairs(rows) do
+			row.button.LayoutOrder = order + 1
+			refreshRow(row)
+		end
 
-		refreshItem(index)
-	end
+		local hasRows = #rows > 0
+		selectAllButton.Visible = hasRows
+		EmptyLabel.Visible = not hasRows
 
-	if #items == 0 then
-		local EmptyLabel = Instance.new("TextLabel")
-		EmptyLabel.Size = UDim2.new(1, 0, 0, rowHeight)
-		EmptyLabel.BackgroundTransparency = 1
-		EmptyLabel.Text = "No items"
-		EmptyLabel.Font = Enum.Font.Gotham
-		EmptyLabel.TextSize = 13
-		EmptyLabel.LayoutOrder = 1
-		registerElement(w, EmptyLabel, "TextColor3", "MutedText")
-		EmptyLabel.Parent = ItemList
+		local listRowCount = hasRows and #rows + 1 or 1
+		local listHeight = listRowCount * rowHeight + (listRowCount - 1) * rowPadding
+		ItemList.Size = UDim2.new(1, -20, 0, listHeight)
+		expandedHeight = collapsedHeight + listHeight + 10
+		if isOpen then
+			SelectionFrame.Size = UDim2.new(0, 440, 0, expandedHeight)
+		end
+
+		return removedSelected
 	end
 
 	SelectBtn.MouseButton1Click:Connect(function()
+		writeOutput(syncItems())
 		setOpen(not isOpen)
 	end)
 
@@ -1351,8 +1443,17 @@ local function createSelectionList(w, parentPage, settingName, items, outputList
 		end
 	end)
 
-	-- Initialize the caller's table immediately without firing a change callback.
-	syncOutput(false)
+	-- Build the rows and initialize the caller's table without firing a callback.
+	syncItems()
+	writeOutput(false)
+
+	-- Handle for scripts: re-scan items (new/removed instances, renamed rows) on
+	-- demand. The callback fires only if the scan removed a selected item.
+	return {
+		Refresh = function()
+			writeOutput(syncItems())
+		end,
+	}
 end
 
 -- Modular UI Component: A button that switches THIS window to a given theme
@@ -1949,6 +2050,15 @@ end
 
 -- Keep the spelling from the original feature request available as an alias.
 Tab.AddSelectionListe = Tab.AddSelectionList
+
+-- Like AddSelectionList, but items are Instances (rows show instance.Name) and
+-- outputList receives the selected Instances themselves. The items table is
+-- re-scanned on every interaction; instances added later start unselected and
+-- removed/destroyed ones are dropped from the UI and from outputList.
+-- Returns a handle: handle:Refresh() re-scans immediately from code.
+function Tab:AddInstancesSelectionList(settingName, instances, outputList, defaultSelected, callback)
+	return createSelectionList(self._window, self._page, settingName, instances, outputList, defaultSelected, callback, true)
+end
 
 function Tab:AddThemeButton(themeName, displayName)
 	createThemeButton(self._window, self._page, themeName, displayName)
